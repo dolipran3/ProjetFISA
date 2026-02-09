@@ -1,4 +1,4 @@
-Date;GLOBAL;D1;D2;D3;D4;jour_feriÃ.;pont.congÃ.;holiday;jour_semaine;Semaine;Annee;Annee_et_Semaine;Temp;pluie;autre;Greve_nationale;SNCF;prof_nationale;Total_reservations
+Date;GLOBAL;D1;D2;D3;D4;jour_ferie.;pont.conge.;holiday;jour_semaine;Semaine;Annee;Annee_et_Semaine;Temp;pluie;autre;Greve_nationale;SNCF;prof_nationale;Total_reservations
 05/09/2022;240;0;172;55;13;0;0;0;lundi;36;2022;2022 Sem 36;20;3.1;1;0;0;0;203
 06/09/2022;542;4;336;169;33;0;0;0;mardi;36;2022;2022 Sem 36;17;0.4;0;0;0;0;257
 07/09/2022;657;1;399;217;40;0;0;0;mercredi;36;2022;2022 Sem 36;17;0.5;1;0;0;0;220
