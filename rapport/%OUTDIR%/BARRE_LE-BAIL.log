@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.15)  25 FEB 2026 21:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.15)  25 FEB 2026 22:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -638,7 +638,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
                    \relax 
 l.83 \newpage
               [1{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 119.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 116.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -658,22 +658,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 134.
+(Font)              using `T1/lmr/bx/n' instead on input line 131.
 
 
-Overfull \hbox (12.18748pt too wide) in paragraph at lines 135--152
+Overfull \hbox (12.18748pt too wide) in paragraph at lines 132--149
  [][] 
  []
 
 <../img/evolution_presence_global.png, id=188, 1075.8594pt x 424.4658pt>
 File: ../img/evolution_presence_global.png Graphic file (type png)
 <use ../img/evolution_presence_global.png>
-Package pdftex.def Info: ../img/evolution_presence_global.png  used on input line 165.
+Package pdftex.def Info: ../img/evolution_presence_global.png  used on input line 162.
 (pdftex.def)             Requested size: 455.24411pt x 179.60864pt.
 <../img/presence_par_jour.png, id=190, 859.0494pt x 423.984pt>
 File: ../img/presence_par_jour.png Graphic file (type png)
 <use ../img/presence_par_jour.png>
-Package pdftex.def Info: ../img/presence_par_jour.png  used on input line 174.
+Package pdftex.def Info: ../img/presence_par_jour.png  used on input line 171.
 (pdftex.def)             Requested size: 295.90588pt x 146.04172pt.
 
 
@@ -688,14 +688,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <../img/corr_matrix.png, id=200, 638.385pt x 570.4512pt>
 File: ../img/corr_matrix.png Graphic file (type png)
 <use ../img/corr_matrix.png>
-Package pdftex.def Info: ../img/corr_matrix.png  used on input line 184.
+Package pdftex.def Info: ../img/corr_matrix.png  used on input line 181.
 (pdftex.def)             Requested size: 386.96027pt x 345.78122pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 187.
+(Font)              <10.95> on input line 184.
 <../img/acf_pacf.png, id=201, 1004.553pt x 569.0058pt>
 File: ../img/acf_pacf.png Graphic file (type png)
 <use ../img/acf_pacf.png>
-Package pdftex.def Info: ../img/acf_pacf.png  used on input line 195.
+Package pdftex.def Info: ../img/acf_pacf.png  used on input line 192.
 (pdftex.def)             Requested size: 455.24411pt x 257.86484pt.
 
 
@@ -710,7 +710,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <../img/heatmap_calendaire.png, id=214, 1401.0744pt x 280.8894pt>
 File: ../img/heatmap_calendaire.png Graphic file (type png)
 <use ../img/heatmap_calendaire.png>
-Package pdftex.def Info: ../img/heatmap_calendaire.png  used on input line 210.
+Package pdftex.def Info: ../img/heatmap_calendaire.png  used on input line 207.
 (pdftex.def)             Requested size: 455.24411pt x 91.26654pt.
 
 
@@ -731,7 +731,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 288.
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 285.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -742,16 +742,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/m/n/12'.
 (microtype)             Ignoring protrusion settings for this character.
-
-
-LaTeX Warning: Citation `nie2023patchtst' on page 7 undefined on input line 301.
-
-
-LaTeX Warning: Citation `chen2024timexer' on page 7 undefined on input line 303.
-
-
-LaTeX Warning: Citation `liu2024itransformer' on page 7 undefined on input line 306.
-
 
 
 
@@ -765,12 +755,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <../img/compare_models_metrics.png, id=247, 1148.6112pt x 712.5822pt>
 File: ../img/compare_models_metrics.png Graphic file (type png)
 <use ../img/compare_models_metrics.png>
-Package pdftex.def Info: ../img/compare_models_metrics.png  used on input line 371.
+Package pdftex.def Info: ../img/compare_models_metrics.png  used on input line 368.
 (pdftex.def)             Requested size: 455.24411pt x 282.42915pt.
 <../img/compare_models_preds.png, id=248, 1127.412pt x 357.0138pt>
 File: ../img/compare_models_preds.png Graphic file (type png)
 <use ../img/compare_models_preds.png>
-Package pdftex.def Info: ../img/compare_models_preds.png  used on input line 381.
+Package pdftex.def Info: ../img/compare_models_preds.png  used on input line 378.
 (pdftex.def)             Requested size: 455.24411pt x 144.15942pt.
 
 
@@ -785,12 +775,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <../img/compare_models_radar.png, id=256, 547.8066pt x 537.6888pt>
 File: ../img/compare_models_radar.png Graphic file (type png)
 <use ../img/compare_models_radar.png>
-Package pdftex.def Info: ../img/compare_models_radar.png  used on input line 391.
+Package pdftex.def Info: ../img/compare_models_radar.png  used on input line 388.
 (pdftex.def)             Requested size: 282.24911pt x 277.04819pt.
 <../img/compare_models_heatmap.png, id=257, 919.2744pt x 357.4956pt>
 File: ../img/compare_models_heatmap.png Graphic file (type png)
 <use ../img/compare_models_heatmap.png>
-Package pdftex.def Info: ../img/compare_models_heatmap.png  used on input line 401.
+Package pdftex.def Info: ../img/compare_models_heatmap.png  used on input line 398.
 (pdftex.def)             Requested size: 455.24411pt x 177.03996pt.
 
 
@@ -805,12 +795,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <../img/lstm_results.png, id=266, 1004.0712pt x 711.1368pt>
 File: ../img/lstm_results.png Graphic file (type png)
 <use ../img/lstm_results.png>
-Package pdftex.def Info: ../img/lstm_results.png  used on input line 432.
+Package pdftex.def Info: ../img/lstm_results.png  used on input line 429.
 (pdftex.def)             Requested size: 218.51521pt x 154.75781pt.
 <../img/transformers_results.png, id=267, 1000.2168pt x 711.1368pt>
 File: ../img/transformers_results.png Graphic file (type png)
 <use ../img/transformers_results.png>
-Package pdftex.def Info: ../img/transformers_results.png  used on input line 437.
+Package pdftex.def Info: ../img/transformers_results.png  used on input line 434.
 (pdftex.def)             Requested size: 218.51521pt x 155.35461pt.
 
 
@@ -848,22 +838,19 @@ L3 programming layer <2025-01-18>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `BARRE_LE-BAIL.out' has not changed.
 (rerunfilecheck)             Checksum: ED3DC192C06AC34CDD5CD202F6CC998F;5657.
  ) 
 Here is how much of TeX's memory you used:
- 18008 strings out of 473190
- 295328 string characters out of 5715799
+ 18010 strings out of 473190
+ 295354 string characters out of 5715799
  741920 words of memory out of 5000000
  40730 multiletter control sequences out of 15000+600000
- 652881 words of font info for 193 fonts, out of 8000000 for 9000
+ 653016 words of font info for 194 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,17n,79p,1255b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on %OUTDIR%/BARRE_LE-BAIL.pdf (13 pages, 2064294 bytes).
+Output written on %OUTDIR%/BARRE_LE-BAIL.pdf (13 pages, 2063533 bytes).
 PDF statistics:
  399 PDF objects out of 1000 (max. 8388607)
  315 compressed objects within 4 object streams

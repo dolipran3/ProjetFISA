@@ -91,9 +91,6 @@
 L'essor du travail hybride a profondément transformé l'organisation des espaces de bureau.
 Dans un contexte de \textit{Smart Workplace}, les entreprises cherchent à optimiser l'utilisation
 de leurs surfaces : salles de réunion, postes de travail, espaces communs.
-Anticiper combien d'employés seront présents chaque jour de la semaine est devenu
-un enjeu stratégique, tant pour réduire les coûts énergétiques que pour améliorer
-le confort des occupants.
 
 Le projet s'inscrit dans ce contexte. À partir de données historiques d'affluence
 journalière sur une période de 18 mois, nous cherchons à prédire le nombre de présences
@@ -298,12 +295,12 @@ entre n'importe quels pas de temps, sans biais séquentiel.
 \begin{itemize}
   \item \textbf{VanillaTransformer} : chaque token = un jour (concat. endo + exo),
         attention sur la séquence temporelle.
-  \item \textbf{PatchTST} \cite{nie2023patchtst} : chaque token = un jour
+  \item \textbf{PatchTST} : chaque token = un jour
         de la série endogène seulement (\textit{patch} unitaire).
-  \item \textbf{TimeXer} \cite{chen2024timexer} : étend PatchTST par
+  \item \textbf{TimeXer} : étend PatchTST par
         une \textit{cross-attention} entre tokens endogènes et exogènes :
         $\text{CrossAttn}(\mathbf{Q}_\text{endo},\, \mathbf{K}_\text{exo},\, \mathbf{V}_\text{exo})$.
-  \item \textbf{iTransformer} \cite{liu2024itransformer} : token = variable entière
+  \item \textbf{iTransformer} : token = variable entière
         (tous les jours d'une feature), attention entre variables et non entre jours.
 \end{itemize}
 
@@ -472,7 +469,7 @@ pour sa fiabilité et sa rapidité d'inférence.
   \item \textbf{Évaluation sur une seule semaine} : la semaine de test S39/2023 est
         une semaine ordinaire. Les performances sur des semaines atypiques (vacances,
         grèves) restent inconnues.
-  \item \textbf{Erreur d'accumulation autorégressiive} : les erreurs se propagent
+  \item \textbf{Erreur d'accumulation autorégressive} : les erreurs se propagent
         au fil des jours dans la fenêtre glissante, ce qui peut amplifier les
         déviations en fin de semaine.
   \item \textbf{Features météo} : les prévisions météorologiques réelles contiennent
