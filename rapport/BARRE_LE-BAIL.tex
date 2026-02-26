@@ -234,16 +234,16 @@ Nous adoptons une stratégie \textit{hold-out} à trois niveaux :
   \item \textbf{Val (20 j)} : \textit{early stopping} — les poids qui minimisent
         la val loss sont conservés. Évaluation directe 1-pas en avant.
   \item \textbf{Test (5 j)} : évaluation finale, \textbf{jamais vu} pendant
-        l'entraînement. Prédiction autorégressiive sur 5 jours.
+        l'entraînement. Prédiction autorégressive sur 5 jours.
 \end{itemize}
 
 \textbf{Règle anti-leakage} : le \textit{scaler} est ajusté
 \textit{uniquement} sur les données d'entraînement, puis appliqué au val et au test.
 
-\subsection{Stratégie de prédiction autorégressiive}
+\subsection{Stratégie de prédiction autorégressive}
 
 Pour prédire la semaine de test (5 jours consécutifs), tous les modèles utilisent
-une \textbf{fenêtre glissante autorégressiive} :
+une \textbf{fenêtre glissante autorégressive} :
 
 \begin{enumerate}
   \item La fenêtre initiale contient les 5 derniers jours réels (semaine précédente).
@@ -342,7 +342,7 @@ R²   & $1 - \frac{SS_\text{res}}{SS_\text{tot}}$ & --- & $\uparrow$ \\
 \begin{tabular}{lrrrr|rrrr}
 \toprule
 & \multicolumn{4}{c|}{\textbf{Validation (1-step)}}
-& \multicolumn{4}{c}{\textbf{Test (autorégressif)}} \\
+& \multicolumn{4}{c}{\textbf{Test}} \\
 \cmidrule(lr){2-5}\cmidrule(lr){6-9}
 \textbf{Modèle} & MAE & MAPE & RMSE & R² & MAE & MAPE & RMSE & R² \\
 \midrule

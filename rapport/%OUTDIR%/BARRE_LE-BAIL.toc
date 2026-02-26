@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {2.2.5}Heatmap calendaire}{5}{subsubsection.2.2.5}%
 \contentsline {section}{\numberline {3}Méthodologie}{6}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Découpage temporel des données}{6}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Stratégie de prédiction autorégressiive}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Stratégie de prédiction autorégressive}{6}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Présentation des modèles}{6}{subsection.3.3}%
 \contentsline {subsubsection}{\numberline {3.3.1}Baseline — XGBoost}{6}{subsubsection.3.3.1}%
 \contentsline {subsubsection}{\numberline {3.3.2}Réseaux récurrents (RNN, LSTM, GRU)}{6}{subsubsection.3.3.2}%
