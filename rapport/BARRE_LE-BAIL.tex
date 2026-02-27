@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 %% ── Packages ──────────────────────────────────────────────────────────────
 \usepackage[utf8]{inputenc}
@@ -16,24 +16,16 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{enumitem}
-\usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage{parskip}
 \usepackage{microtype}
 \usepackage{lmodern}
 
 %% ── Mise en page ──────────────────────────────────────────────────────────
-\geometry{
-  top=2.2cm, bottom=2.5cm,
-  left=2.5cm, right=2.5cm
-}
+\geometry{top=2.2cm, bottom=2.5cm, left=2.5cm, right=2.5cm, headheight=15pt}
 
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue!60!black,
-  citecolor=green!50!black,
-  urlcolor=blue!60!black
-}
+\hypersetup{colorlinks=true, linkcolor=blue!60!black,
+            citecolor=green!50!black, urlcolor=blue!60!black}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -43,7 +35,11 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 \captionsetup{font=small, labelfont=bf}
-\setlist[itemize]{noitemsep, topsep=4pt}
+\setlist[itemize]{noitemsep, topsep=3pt}
+\setlist[enumerate]{noitemsep, topsep=3pt}
+\setlength{\parskip}{4pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{2pt}
 
 %% ──────────────────────────────────────────────────────────────────────────
 \begin{document}
@@ -51,34 +47,23 @@
 %% ── Page de titre ─────────────────────────────────────────────────────────
 \begin{titlepage}
   \centering
-  \vspace*{1.5cm}
-
+  \vspace*{1.2cm}
   {\Large \textbf{ISEN Yncréa Ouest}\par}
-  \vspace{0.3cm}
+  \vspace{0.2cm}
   {\large Projet FISA — Intelligence Artificielle\par}
-
-  \vspace{2cm}
+  \vspace{1.8cm}
   \rule{\linewidth}{1.5pt}\\[0.4cm]
-  {\LARGE \textbf{Prédiction de la Présence des Employés\\[0.3cm]
-  via Deep Learning}\par}
+  {\LARGE \textbf{Prédiction de la Présence des Employés\\[0.3cm] via Deep Learning}\par}
   {\large \textit{Smart Workplace — Anticipation de l'occupation des bureaux}\par}
   \rule{\linewidth}{1.5pt}
-
-  \vspace{2cm}
-
-  \begin{minipage}{0.45\textwidth}
-    \centering
-    {\large \textbf{Auteurs}\par}
-    \vspace{0.3cm}
-    Ewan \textsc{Barre}\\
-    Baptiste \textsc{Le-Bail}\\
-  \end{minipage}
-
+  \vspace{1.8cm}
+  {\large \textbf{Auteurs}\par}
+  \vspace{0.3cm}
+  Ewan \textsc{Barre} \qquad Baptiste \textsc{Le-Bail}
   \vfill
   {\large Année universitaire 2025--2026\par}
 \end{titlepage}
 
-%% ── Table des matières ────────────────────────────────────────────────────
 \tableofcontents
 \newpage
 
@@ -89,33 +74,25 @@
 \subsection{Contexte : le Smart Workplace}
 
 L'essor du travail hybride a profondément transformé l'organisation des espaces de bureau.
-Dans un contexte de \textit{Smart Workplace}, les entreprises cherchent à optimiser l'utilisation
-de leurs surfaces : salles de réunion, postes de travail, espaces communs.
+Dans un contexte de \textit{Smart Workplace}, les entreprises cherchent à optimiser
+l'utilisation de leurs surfaces : salles de réunion, postes de travail, espaces communs.
+Anticiper le nombre d'employés présents chaque jour est un enjeu stratégique pour
+réduire les coûts énergétiques et améliorer le confort des occupants.
 
-Le projet s'inscrit dans ce contexte. À partir de données historiques d'affluence
-journalière sur une période de 18 mois, nous cherchons à prédire le nombre de présences
-pour la \textbf{semaine suivante} (5 jours ouvrés), en s'appuyant sur des approches
-d'apprentissage automatique et de \textit{deep learning}.
+Ce projet vise à prédire l'affluence journalière pour la \textbf{semaine suivante}
+(5 jours ouvrés) à partir de 250 jours d'historique, en comparant plusieurs familles
+de modèles : réseaux récurrents (RNN, LSTM, GRU), gradient boosting (XGBoost),
+et architectures Transformer (PatchTST, TimeXer, iTransformer, VanillaTransformer).
 
 \subsection{Objectifs}
 
 \begin{itemize}
-  \item Construire et comparer plusieurs modèles de prédiction de séries temporelles :
-        réseaux récurrents (RNN, LSTM, GRU), gradient boosting (XGBoost)
-        et architectures Transformer (PatchTST, TimeXer, iTransformer,
-        VanillaTransformer).
-  \item Évaluer chaque modèle sur les mêmes métriques (MAE, MAPE, RMSE, R²)
-        pour une comparaison équitable.
-  \item Identifier la meilleure approche pour ce problème de prévision courte-portée
-        ($h = 5$ jours) avec un dataset de taille limitée.
+  \item Comparer 8 modèles sur les mêmes métriques (MAE, MAPE, RMSE, R²)
+        pour une évaluation équitable.
+  \item Identifier la meilleure approche pour une prévision courte-portée ($h = 5$ jours)
+        avec un dataset de taille limitée (250 jours ouvrés).
+  \item Analyser les forces et faiblesses de chaque famille de modèles.
 \end{itemize}
-
-\subsection{Données disponibles}
-
-Le jeu de données couvre \textbf{250 jours ouvrés} (septembre 2022 -- septembre 2023)
-et contient 15 colonnes après nettoyage. La variable cible est \texttt{GLOBAL},
-le nombre total de présences journalières dans le bâtiment.
-
 
 \newpage
 %%═══════════════════════════════════════════════════════════════════════════
@@ -124,7 +101,8 @@ le nombre total de présences journalières dans le bâtiment.
 
 \subsection{Description du dataset}
 
-Le dataset \texttt{df\_venues\_final.csv} regroupe les features suivantes :
+Le dataset \texttt{df\_venues\_final.csv} contient \textbf{250 jours ouvrés}
+(septembre 2022 -- septembre 2023). Après nettoyage, 15 features sont retenues :
 
 \begin{table}[H]
 \centering
@@ -152,63 +130,58 @@ Le dataset \texttt{df\_venues\_final.csv} regroupe les features suivantes :
 
 \subsubsection{Évolution temporelle}
 
-La figure~\ref{fig:evolution} montre l'évolution de \texttt{GLOBAL} sur l'ensemble de
-la période. On observe une \textbf{saisonnalité hebdomadaire} marquée (les lundis et
-vendredis sont structurellement moins fréquentés) ainsi que des creux importants
-lors des périodes de vacances scolaires (été 2023, fin décembre 2022).
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../img/evolution_presence_global.png}
-  \caption{Évolution journalière de la présence (\texttt{GLOBAL}) sur 250 jours.}
+  \caption{Évolution journalière de \texttt{GLOBAL} sur 250 jours. On observe une
+  saisonnalité hebdomadaire marquée et des creux importants lors des vacances.}
   \label{fig:evolution}
 \end{figure}
+
+La série présente une \textbf{saisonnalité hebdomadaire} nette (les vendredis sont
+systématiquement plus creux) et des chutes lors des vacances scolaires (été 2023,
+fin décembre 2022). La moyenne est de 604 venues/jour, avec un écart-type de 127 venues.
 
 \subsubsection{Présence par jour de la semaine}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.65\linewidth]{../img/presence_par_jour.png}
-  \caption{Présence moyenne par jour de la semaine. Le vendredi est systématiquement
-  le jour le moins fréquenté.}
+  \includegraphics[width=0.7\linewidth]{../img/presence_par_jour.png}
+  \caption{Présence moyenne par jour. Le vendredi affiche \textasciitilde 30\% de
+  présence en moins que le mercredi.}
   \label{fig:parjour}
 \end{figure}
 
-\subsubsection{Matrice de corrélation}
+\subsubsection{Corrélations}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\linewidth]{../img/corr_matrix.png}
+  \includegraphics[width=0.88\linewidth]{../img/corr_matrix.png}
   \caption{Matrice de corrélation de Pearson. \texttt{Total\_reservations} est la
   variable la plus corrélée avec \texttt{GLOBAL} ($r = 0.89$). La température
   présente une corrélation négative modérée ($r \approx -0.30$).}
   \label{fig:corrmatrix}
 \end{figure}
 
+\texttt{Total\_reservations} ($r = 0.89$) est le meilleur prédicteur de l'affluence :
+plus les salles sont réservées, plus les gens viennent. On peut également noter la corrélation négative modérée de la température
+($r \approx -0.30$) : les jours plus chauds sont légèrement moins fréquentés, probablement en raison de la tentation de rester à l'extérieur.
+
 \subsubsection{Autocorrélation de la série}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../img/acf_pacf.png}
-  \caption{ACF et PACF de la série \texttt{GLOBAL}. La corrélation est
-  significative aux lags 1, 2 et 5, confirmant la \textbf{dépendance à la semaine
-  précédente} et justifiant le choix d'une fenêtre de 5 jours.}
+  \caption{ACF et PACF de la série \texttt{GLOBAL}. Pics significatifs aux lags 1, 5
+  et 10, confirmant la dépendance hebdomadaire. La PACF chute dans l'intervalle de
+  confiance au-delà du lag 5, justifiant \texttt{WINDOW = 5}.}
   \label{fig:acf}
 \end{figure}
 
-L'analyse de la PACF (figure~\ref{fig:acf}) montre que les lags au-delà de 5 jours
-ne contribuent pas significativement à la prédiction. Cela justifie directement
-le choix de \texttt{WINDOW = 5} pour tous les modèles.
-
-\subsubsection{Heatmap calendaire}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{../img/heatmap_calendaire.png}
-  \caption{Heatmap calendaire : chaque colonne est une semaine, chaque ligne un jour.
-  Les semaines claires correspondent aux périodes de vacances ou jours fériés.}
-  \label{fig:heatmap}
-\end{figure}
+L'ACF révèle une mémoire hebdomadaire : la présence d'un lundi ressemble à celle
+du lundi précédent (lag 5). La PACF montre que les dépendances \textit{directes}
+au-delà de 5 jours sont marginales, ce qui justifie directement le choix de
+\texttt{WINDOW = 5} pour tous les modèles.
 
 \newpage
 %%═══════════════════════════════════════════════════════════════════════════
@@ -217,116 +190,88 @@ le choix de \texttt{WINDOW = 5} pour tous les modèles.
 
 \subsection{Découpage temporel des données}
 
-La nature temporelle des données impose un découpage \textbf{strictement chronologique}
-pour éviter toute fuite d'information (\textit{data leakage}).
-Nous adoptons une stratégie \textit{hold-out} à trois niveaux :
+Un découpage \textbf{strictement chronologique} est imposé pour éviter toute fuite
+d'information (\textit{data leakage}) :
 
 \begin{equation}
-\underbrace{\overbrace{\text{Train (225 j)}}^{\text{S36/2022 -- S34/2023}}
-\;\Big|\;
-\overbrace{\text{Val (20 j)}}^{\text{S35--S38/2023}}
-\;\Big|\;
-\overbrace{\text{Test (5 j)}}^{\text{S39/2023}}}_{\text{250 jours ouvrés}}
+\underbrace{
+  \overbrace{\text{Train (225 j)}}^{\text{S36/2022 -- S34/2023}}
+  \;\Big|\;
+  \overbrace{\text{Val (20 j)}}^{\text{S35--S38/2023}}
+  \;\Big|\;
+  \overbrace{\text{Test (5 j)}}^{\text{S39/2023}}
+}_{250\,\text{jours ouvrés}}
 \end{equation}
 
 \begin{itemize}
   \item \textbf{Train (225 j)} : apprentissage des poids du modèle.
-  \item \textbf{Val (20 j)} : \textit{early stopping} — les poids qui minimisent
-        la val loss sont conservés. Évaluation directe 1-pas en avant.
+  \item \textbf{Val (20 j)} : \textit{early stopping} — les poids minimisant la val
+        loss sont conservés. Évaluation directe 1-pas en avant.
   \item \textbf{Test (5 j)} : évaluation finale, \textbf{jamais vu} pendant
-        l'entraînement. Prédiction autorégressive sur 5 jours.
+        l'entraînement. Prédiction autorégressiive sur 5 jours.
 \end{itemize}
 
-\textbf{Règle anti-leakage} : le \textit{scaler} est ajusté
-\textit{uniquement} sur les données d'entraînement, puis appliqué au val et au test.
+\textbf{Règle anti-leakage} : le \textit{scaler} est ajusté \textit{uniquement} sur
+les données d'entraînement, puis appliqué au val et au test.
 
-\subsection{Stratégie de prédiction autorégressive}
+\subsection{Stratégie de prédiction autorégressiive}
 
-Pour prédire la semaine de test (5 jours consécutifs), tous les modèles utilisent
-une \textbf{fenêtre glissante autorégressive} :
-
-\begin{enumerate}
-  \item La fenêtre initiale contient les 5 derniers jours réels (semaine précédente).
-  \item Le modèle prédit le jour $t$ → la valeur prédite $\hat{y}_t$
-        est injectée dans la fenêtre pour prédire $t+1$.
-  \item Les features exogènes (météo, fériés) sont connues à l'avance
-        et utilisées telles quelles.
-\end{enumerate}
+Pour prédire les 5 jours du test, tous les modèles utilisent une \textbf{fenêtre
+glissante autorégressiive} : la prédiction du jour $t$ est injectée dans la fenêtre
+pour prédire $t+1$, en utilisant les vraies valeurs des features exogènes (météo,
+calendrier) connues à l'avance. Les erreurs s'accumulent au fil des jours.
 
 \subsection{Présentation des modèles}
 
-\subsubsection{Baseline — XGBoost}
-
-XGBoost est un modèle de \textit{gradient boosting} sur arbres de décision.
-Il ne traite pas nativement les séquences : chaque exemple est un vecteur
-$\mathbf{x} \in \mathbb{R}^{W \times F}$ aplati ($5 \times 15 = 75$ features).
-Il ne nécessite pas de normalisation et offre une grande interpretabilité
-via l'importance des features.
-Hyperparamètres : 300 estimateurs, profondeur max = 4,
-learning rate = 0.05, régularisation L1+L2.
+\subsubsection{XGBoost (baseline)}
+Modèle de \textit{gradient boosting} sur arbres de décision. La fenêtre de 5 jours
+est \textbf{aplatie} en un vecteur de $5 \times 15 = 75$ features.
+Pas de normalisation requise. Interprétable via l'importance des features.
+Hyperparamètres : 300 estimateurs, profondeur max = 4, LR = 0.05, régularisation L1+L2.
 
 \subsubsection{Réseaux récurrents (RNN, LSTM, GRU)}
-
-Les trois architectures traitent une séquence $(\mathbf{x}_1, \ldots, \mathbf{x}_W)$
-en maintenant un état caché $h_t$ mis à jour à chaque pas de temps.
-
+Les trois architectures traitent la séquence temporelle pas à pas :
 \begin{itemize}
-  \item \textbf{RNN} (\textit{Simple Recurrent Network}) : architecture de base,
-        souffre du \textit{vanishing gradient} pour de longues séquences.
-  \item \textbf{LSTM} (\textit{Long Short-Term Memory}) : introduit une
-        \textit{cellule de contexte} $c_t$ mise à jour par additions, ce qui
-        permet aux gradients de se propager sans disparaître :
-        $c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t$.
-  \item \textbf{GRU} (\textit{Gated Recurrent Unit}) : simplifie le LSTM en
-        fusionnant les portes d'oubli et d'entrée, avec moins de paramètres.
+  \item \textbf{RNN} : $h_t = \tanh(W_h h_{t-1} + W_x x_t)$. Architecture minimale,
+        souffre théoriquement du \textit{vanishing gradient} mais efficace sur
+        \texttt{WINDOW=5}.
+  \item \textbf{LSTM} : cellule de contexte $c_t = f_t \odot c_{t-1} + i_t \odot
+        \tilde{c}_t$ avec 3 portes (oubli, entrée, sortie). Plus expressif.
+  \item \textbf{GRU} : simplifie le LSTM (2 portes), moins de paramètres.
 \end{itemize}
-
-Architecture commune : 2 couches empilées, taille cachée = 64,
-dropout = 0.2, couche \texttt{Linear(64 → 1)}.
-Entraînement : Adam, LR = $10^{-3}$, \texttt{ReduceLROnPlateau},
-\textit{early stopping} sur la val loss (patience = 40 epochs).
+Architecture commune : 2 couches, taille cachée = 64, dropout = 0.2, 54 081 paramètres.
+Entraînement : Adam (LR = $10^{-3}$), \texttt{ReduceLROnPlateau}, early stopping (patience = 40).
 
 \subsubsection{Architectures Transformer}
-
-Les Transformers remplacent la récurrence par un mécanisme
-d'\textbf{attention multi-tête} qui apprend des dépendances directes
-entre n'importe quels pas de temps, sans biais séquentiel.
-
+Remplacent la récurrence par un mécanisme d'\textbf{attention multi-tête} :
 \begin{itemize}
-  \item \textbf{VanillaTransformer} : chaque token = un jour (concat. endo + exo),
-        attention sur la séquence temporelle.
-  \item \textbf{PatchTST} : chaque token = un jour
-        de la série endogène seulement (\textit{patch} unitaire).
-  \item \textbf{TimeXer} : étend PatchTST par
-        une \textit{cross-attention} entre tokens endogènes et exogènes :
-        $\text{CrossAttn}(\mathbf{Q}_\text{endo},\, \mathbf{K}_\text{exo},\, \mathbf{V}_\text{exo})$.
-  \item \textbf{iTransformer} : token = variable entière
-        (tous les jours d'une feature), attention entre variables et non entre jours.
+  \item \textbf{VanillaTransformer} : token = un jour entier (endo + exo). Auto-attention
+        sur 5 tokens.
+  \item \textbf{PatchTST} : token = un jour de la série endogène seulement.
+  \item \textbf{TimeXer} : PatchTST + cross-attention
+        $\text{Attn}(\mathbf{Q}_\text{endo}, \mathbf{K}_\text{exo}, \mathbf{V}_\text{exo})$.
+  \item \textbf{iTransformer} : token = une variable entière (attention inter-features).
 \end{itemize}
-
-Configuration commune : $d_\text{model} = 64$, 4 têtes d'attention, 2 couches,
-dropout = 0.1. Entraînement : AdamW, LR = $3 \times 10^{-4}$,
-\textit{CosineAnnealingLR}, \textit{early stopping} (patience = 40).
+Config. commune : $d_\text{model} = 64$, 4 têtes, 2 couches, dropout = 0.1.
+Entraînement : AdamW (LR = $3\times10^{-4}$), CosineAnnealingLR, early stopping (patience = 40).
 
 \subsection{Métriques d'évaluation}
 
-Les quatre métriques suivantes sont calculées sur le set de validation (1-step)
-et sur le test (autorégressif 5 jours) :
-
 \begin{table}[H]
 \centering
-\caption{Métriques d'évaluation}
-\begin{tabular}{llll}
+\caption{Métriques utilisées (calculées sur val et test)}
+\begin{tabular}{lll}
 \toprule
-\textbf{Métrique} & \textbf{Formule} & \textbf{Unité} & \textbf{Optimum} \\
+\textbf{Métrique} & \textbf{Formule} & \textbf{Optimum} \\
 \midrule
-MAE  & $\frac{1}{n}\sum|\hat{y}_i - y_i|$ & venues & $\downarrow$ \\[4pt]
-MAPE & $\frac{100}{n}\sum\frac{|\hat{y}_i - y_i|}{y_i}$ & \% & $\downarrow$ \\[4pt]
-RMSE & $\sqrt{\frac{1}{n}\sum(\hat{y}_i - y_i)^2}$ & venues & $\downarrow$ \\[4pt]
-R²   & $1 - \frac{SS_\text{res}}{SS_\text{tot}}$ & --- & $\uparrow$ \\
+MAE  & $\frac{1}{n}\sum|\hat{y}_i - y_i|$ & $\downarrow$ \\[3pt]
+MAPE & $\frac{100}{n}\sum\frac{|\hat{y}_i-y_i|}{y_i}$ & $\downarrow$ \\[3pt]
+RMSE & $\sqrt{\frac{1}{n}\sum(\hat{y}_i-y_i)^2}$ & $\downarrow$ \\[3pt]
+R²   & $1-\frac{SS_\text{res}}{SS_\text{tot}}$ & $\uparrow$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
 
 \newpage
 %%═══════════════════════════════════════════════════════════════════════════
@@ -337,106 +282,152 @@ R²   & $1 - \frac{SS_\text{res}}{SS_\text{tot}}$ & --- & $\uparrow$ \\
 
 \begin{table}[H]
 \centering
-\caption{Métriques sur la semaine de test S39/2023 (prédiction autorégressiive, 5 jours).
-\textbf{Gras} = meilleure valeur.}
+\caption{Métriques — Validation (1-step) et Test (autorégressif 5 jours).
+\textbf{Gras} = meilleure valeur test.}
+\small
 \begin{tabular}{lrrrr|rrrr}
 \toprule
-& \multicolumn{4}{c|}{\textbf{Validation (1-step)}}
-& \multicolumn{4}{c}{\textbf{Test}} \\
+& \multicolumn{4}{c|}{\textbf{Val (1-step)}}
+& \multicolumn{4}{c}{\textbf{Test (autorégressif)}} \\
 \cmidrule(lr){2-5}\cmidrule(lr){6-9}
 \textbf{Modèle} & MAE & MAPE & RMSE & R² & MAE & MAPE & RMSE & R² \\
 \midrule
-RNN              & 33.8 & 6.0\% & 45.4 & 0.851 & 34.8 & 6.7\% & 50.7 & 0.762 \\
-LSTM             & 34.2 & 6.2\% & 41.3 & 0.877 & 65.5 & 11.7\% & 75.4 & 0.474 \\
-GRU              & 32.1 & 5.9\% & 42.0 & 0.873 & 65.4 & 11.8\% & 73.9 & 0.495 \\
-XGBoost          & 58.4 & 9.7\% & 70.5 & 0.642 & 54.9 & 9.9\% & 60.5 & 0.662 \\
-VanillaTransf.   & 34.6 & 6.1\% & 44.2 & 0.859 & 62.4 & 11.5\% & 67.5 & 0.579 \\
-PatchTST         & 63.4 & 11.5\% & 75.9 & 0.585 & 44.0 & 8.4\% & 51.4 & 0.755 \\
-iTransformer     & 45.0 & 7.9\% & 54.0 & 0.790 & 60.0 & 10.7\% & 62.7 & 0.637 \\
-\textbf{TimeXer} & 43.7 & 7.4\% & 53.3 & 0.795
+RNN              & 33.8 & 6.0\%  & 45.4 & 0.851 & 34.8 & 6.7\%  & 50.7 & 0.762 \\
+LSTM             & 34.2 & 6.2\%  & 41.3 & 0.877 & 65.5 & 11.7\% & 75.4 & 0.474 \\
+GRU              & 32.1 & 5.9\%  & 42.0 & 0.873 & 65.4 & 11.8\% & 73.9 & 0.495 \\
+XGBoost          & 58.4 & 9.7\%  & 70.5 & 0.642 & 54.9 & 9.9\%  & 60.5 & 0.662 \\
+VanillaTransf.   & 34.6 & 6.1\%  & 44.2 & 0.859 & 62.4 & 11.5\% & 67.5 & 0.579 \\
+PatchTST         & 63.4 & 11.5\% & 75.9 & 0.585 & 44.0 & 8.4\%  & 51.4 & 0.755 \\
+iTransformer     & 45.0 & 7.9\%  & 54.0 & 0.790 & 60.0 & 10.7\% & 62.7 & 0.637 \\
+\textbf{TimeXer} & 43.7 & 7.4\%  & 53.3 & 0.795
                  & \textbf{39.0} & \textbf{6.9\%} & \textbf{43.4} & \textbf{0.826} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Comparaison graphique}
+\subsection{Résultats par modèle}
 
-\subsubsection{Barplots des métriques}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../img/rnn_results.png}
+    \caption{RNN}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../img/lstm_results.png}
+    \caption{LSTM}
+  \end{subfigure}
+  \caption{RNN vs LSTM : courbe d'apprentissage, série complète, zoom et barres.}
+  \label{fig:rnn_lstm}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../img/gru_results.png}
+    \caption{GRU}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.49\linewidth}
+    \includegraphics[width=\linewidth]{../img/xgboost_results.png}
+    \caption{XGBoost}
+  \end{subfigure}
+  \caption{GRU vs XGBoost : courbe d'apprentissage/importance des features,
+  série complète, zoom et barres.}
+  \label{fig:gru_xgb}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{../img/transformers_results.png}
+  \caption{Comparaison des 4 architectures Transformer sur la semaine de test S39/2023.}
+  \label{fig:transformers}
+\end{figure}
+
+\subsection{Analyse détaillée par modèle}
+
+\paragraph{RNN — 2\textsuperscript{e} meilleur modèle (test MAE = 34.8, R² = 0.762).}
+Le RNN est la surprise de cette étude. Sa simplicité est un atout : avec moins de
+paramètres, il généralise mieux sur 225 jours d'entraînement. Sur une fenêtre de
+5 jours seulement, le \textit{vanishing gradient} théorique n'a pas le temps de se
+manifester. La cohérence val (MAE = 33.8) / test (MAE = 34.8) confirme l'absence
+d'overfitting.
+
+\paragraph{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}
+Malgré d'excellentes métriques de validation (MAE = 34.2, R² = 0.877), le LSTM
+s'effondre en test. Ses 3 portes et sa cellule de mémoire lui permettent de mémoriser
+des patterns très spécifiques du train, mais échouent à généraliser sur S39/2023.
+L'écart val/test est le plus marqué de tous les modèles — signe classique d'overfitting.
+
+\paragraph{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}
+Le GRU présente un profil quasi-identique au LSTM : excellent en val (MAE = 32.1,
+meilleur de tous), mais effondrement en test. Malgré la fusion des portes et moins de
+paramètres, sa capacité reste trop grande pour ce dataset. LSTM et GRU sont davantage
+adaptés à des séries longues (plusieurs années) où leur mémoire à long terme est utile.
+
+\paragraph{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}
+XGBoost offre une performance intermédiaire mais surtout \textbf{stable} : val MAE = 58.4
+et test MAE = 54.9 (meilleure cohérence après RNN). En aplatissant la fenêtre temporelle,
+il perd l'ordre séquentiel, mais l'importance des features révèle que \texttt{Total\_reservations}
+et l'encodage du jour de la semaine sont les meilleurs prédicteurs. Recommandé en
+production pour sa robustesse et son interprétabilité.
+
+\paragraph{VanillaTransformer — Attention insuffisante (test MAE = 62.4, R² = 0.579).}
+Sur seulement 5 tokens (jours), le mécanisme d'auto-attention ne trouve pas assez de
+structure temporelle à exploiter. La complexité (103 233 paramètres) n'est pas
+justifiée par la taille du dataset, résultant en des performances inférieures à XGBoost.
+
+\paragraph{PatchTST — Bon compromis (test MAE = 44.0, R² = 0.755).}
+PatchTST se classe en 3\textsuperscript{e} position malgré une validation médiocre
+(MAE = 63.4). En traitant chaque jour de la série endogène comme un token distinct,
+il apprend des représentations temporelles plus généralisables que le VanillaTransformer.
+L'inversion val/test est positive : le modèle généralise mieux qu'il ne valide.
+
+\paragraph{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}
+L'iTransformer traite chaque variable comme un token (attention entre features).
+Cette approche est pertinente sur des datasets multivariés denses, mais avec seulement
+15 features et 5 jours, les corrélations inter-variables sont mieux capturées par la
+matrice de corrélation que par un mécanisme d'attention dédié.
+
+\paragraph{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}
+TimeXer domine grâce à sa \textbf{cross-attention} endo/exo : les tokens de la série
+endogène interrogent directement les features exogènes, apprenant comment la météo,
+les grèves et les fériés modulent l'affluence. Là où PatchTST traite les deux séparément,
+TimeXer crée un dialogue explicite entre les deux flux. La cohérence val/test
+(43.7 → 39.0) est remarquable et confirme une bonne généralisation.
+
+\subsection{Comparaisons globales}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../img/compare_models_metrics.png}
-  \caption{Métriques comparées pour tous les modèles (barres opaques = val,
-  transparentes = test).}
+  \caption{Barplots MAE, MAPE, RMSE, R² pour tous les modèles
+  (barres opaques = val, transparentes = test).}
   \label{fig:metrics}
 \end{figure}
-
-\subsubsection{Prédictions sur la semaine de test}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../img/compare_models_preds.png}
-  \caption{À gauche : courbes de prédiction de tous les modèles sur S39/2023.
-  À droite : heatmap des erreurs absolues par jour et par modèle.}
+  \caption{Prédictions sur la semaine de test S39/2023 (gauche)
+  et heatmap des erreurs absolues par jour et par modèle (droite).}
   \label{fig:preds}
 \end{figure}
-
-\subsubsection{Vue synthétique — Radar chart}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.62\linewidth]{../img/compare_models_radar.png}
-  \caption{Radar chart des performances test normalisées (plus grand = meilleur).
-  TimeXer domine sur les quatre axes.}
-  \label{fig:radar}
-\end{figure}
-
-\subsubsection{Heatmap des métriques}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{../img/compare_models_heatmap.png}
-  \caption{Heatmap récapitulative : vert = bonne valeur, rouge = mauvaise valeur,
-  normalisée par colonne.}
+  \caption{Heatmap des métriques normalisées : vert = meilleur, rouge = moins bon.}
   \label{fig:heatmap_metrics}
 \end{figure}
 
-\subsection{Analyse par famille de modèles}
-
-\paragraph{Réseaux récurrents.}
-Le RNN obtient un test MAE de 34.8 venues, surpassant étonnamment LSTM et GRU.
-Cette inversion s'explique par l'overfitting de LSTM/GRU sur les 225 jours d'entraînement :
-la semaine de test (S39/2023) présente une dynamique légèrement différente
-des semaines du train. Le RNN, plus simple, généralise mieux sur cet horizon court.
-
-\paragraph{XGBoost.}
-XGBoost affiche une performance intermédiaire stable (MAE = 54.9, R² = 0.662).
-Son avantage principal est sa robustesse : contrairement aux réseaux profonds,
-il ne souffre pas de sur-apprentissage et produit des résultats cohérents entre
-validation et test.
-
-\paragraph{Transformers.}
-TimeXer se distingue nettement avec un test MAE de 39.0 et un R² de 0.826.
-La cross-attention entre série endogène et features exogènes lui permet d'apprendre
-la relation entre l'affluence prévue et les facteurs contextuels (météo, grèves,
-vacances). PatchTST confirme également l'intérêt des architectures à base de patches.
-En revanche, le VanillaTransformer et l'iTransformer ne parviennent pas à tirer
-parti de la structure temporelle sur ce dataset de taille limitée.
-
 \begin{figure}[H]
   \centering
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{../img/lstm_results.png}
-    \caption{LSTM}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.48\linewidth}
-    \includegraphics[width=\linewidth]{../img/transformers_results.png}
-    \caption{Transformers (4 modèles)}
-  \end{subfigure}
-  \caption{Résultats détaillés : courbe d'apprentissage, série complète,
-  zoom semaine de test et comparaison jour par jour.}
-  \label{fig:details}
+  \includegraphics[width=0.6\linewidth]{../img/compare_models_radar.png}
+  \caption{Radar chart des performances test normalisées.
+  TimeXer domine sur les quatre axes simultanément.}
+  \label{fig:radar}
 \end{figure}
 
 \newpage
@@ -446,45 +437,33 @@ parti de la structure temporelle sur ce dataset de taille limitée.
 
 \subsection{Meilleure approche}
 
-Sur ce problème de prévision de présence à horizon 5 jours, \textbf{TimeXer}
-est le modèle le plus performant (MAE = 39.0 venues, MAPE = 6.9\%, R² = 0.826).
-Son mécanisme de cross-attention lui permet d'intégrer efficacement les informations
-exogènes (jours fériés, grèves, météo) dans la prédiction de l'affluence,
-ce que les architectures récurrentes classiques peinent à faire.
+\textbf{TimeXer} est le modèle le plus performant (MAE = 39.0, MAPE = 6.9\%,
+R² = 0.826). Sa cross-attention endo/exo capture efficacement l'influence des facteurs
+contextuels sur la présence, ce que les architectures récurrentes classiques peinent à faire.
 
-Le \textbf{RNN}, malgré sa simplicité, se classe en deuxième position sur la semaine
-de test grâce à sa meilleure généralisation sur un dataset limité.
-XGBoost constitue une baseline solide et interprétable, recommandée en production
-pour sa fiabilité et sa rapidité d'inférence.
+\textbf{RNN}, malgré sa simplicité, se classe en deuxième position grâce à sa meilleure
+généralisation sur un dataset limité. \textbf{XGBoost} reste recommandé en production
+pour sa robustesse, sa rapidité d'inférence et son interprétabilité.
 
 \subsection{Limites}
 
 \begin{itemize}
-  \item \textbf{Taille du dataset} : 250 jours est insuffisant pour entraîner
-        pleinement des architectures profondes comme TimeXer. Les résultats pourraient
-        être significativement améliorés avec 2--3 ans de données supplémentaires.
-  \item \textbf{Fenêtre de prédiction fixe} : tous les modèles prédisent exactement
-        5 jours. Un horizon variable (ex. prédiction au fil de la semaine)
-        n'a pas été exploré.
-  \item \textbf{Évaluation sur une seule semaine} : la semaine de test S39/2023 est
-        une semaine ordinaire. Les performances sur des semaines atypiques (vacances,
-        grèves) restent inconnues.
-  \item \textbf{Erreur d'accumulation autorégressive} : les erreurs se propagent
-        au fil des jours dans la fenêtre glissante, ce qui peut amplifier les
-        déviations en fin de semaine.
-  \item \textbf{Features météo} : les prévisions météorologiques réelles contiennent
-        de l'incertitude. Dans ce travail, les valeurs réelles sont utilisées,
-        ce qui constitue un avantage artificiel.
+  \item \textbf{Dataset limité} : 250 jours est insuffisant pour des architectures
+        profondes. 2--3 ans de données amélioreraient significativement les Transformers.
+  \item \textbf{Une seule semaine de test} : S39/2023 est une semaine ordinaire.
+        Les performances sur des semaines atypiques (grèves, vacances) restent inconnues.
+  \item \textbf{Accumulation d'erreurs} : en mode autorégressif, les erreurs se propagent
+        sur les 5 jours, rendant le vendredi plus difficile à prédire.
+  \item \textbf{Météo parfaite} : les valeurs météo réelles sont utilisées,
+        constituant un avantage artificiel par rapport à un scénario de production réel.
+  \item \textbf{Overfitting LSTM/GRU} : malgré l'early stopping et le dropout, la val
+        loss ne représente pas suffisamment la difficulté du test.
 \end{itemize}
 
 \subsection{Perspectives}
 
-Pour améliorer ce système en production, plusieurs pistes sont envisageables :
-l'utilisation de prévisions météorologiques réelles comme input,
-l'entraînement sur un historique plus long,
-l'intégration de données de badges d'accès pour affiner la cible,
-et la mise en place d'un ré-entraînement hebdomadaire automatique
-au fur et à mesure que de nouvelles données arrivent.
-
+Pour améliorer ce système en production : utilisation de prévisions météo réelles,
+entraînement sur un historique plus long, intégration de données de badges d'accès,
+et ré-entraînement hebdomadaire automatique au fil des nouvelles données.
 
 \end{document}
