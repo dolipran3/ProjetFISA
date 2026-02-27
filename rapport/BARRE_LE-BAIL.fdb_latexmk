@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1772195093.74528 "/Users/ewan/Documents/ISEN/PROJET/ProjetFISA/rapport/BARRE_LE-BAIL.tex" "BARRE_LE-BAIL.pdf" "BARRE_LE-BAIL" 1772195096.46028 0
+["pdflatex"] 1772195611.37356 "/Users/ewan/Documents/ISEN/PROJET/ProjetFISA/rapport/BARRE_LE-BAIL.tex" "BARRE_LE-BAIL.pdf" "BARRE_LE-BAIL" 1772195614.1898 0
   "../img/acf_pacf.png" 1772048857.75755 109337 b6927d72fc267f12a0d03e533c836115 ""
   "../img/compare_models_heatmap.png" 1772182880.89431 126973 ac29795ace914e0c37831754c5069566 ""
   "../img/compare_models_metrics.png" 1772182880.27797 165810 da2c4b36c1cd291866e0299323bfb242 ""
@@ -13,7 +13,7 @@
   "../img/rnn_results.png" 1772182460.87437 283217 915d10c7f017b811a7643b5ca02daf96 ""
   "../img/transformers_results.png" 1772182554.04944 385064 f86deb3aacb5d9d7b3a8556ad0561145 ""
   "../img/xgboost_results.png" 1772182493.10248 287978 53525ba0dd684c57f13158c89daad6d5 ""
-  "/Users/ewan/Documents/ISEN/PROJET/ProjetFISA/rapport/BARRE_LE-BAIL.tex" 1772195094.87976 22318 d57e34a05baf89fc7dc9a45bd5272b27 ""
+  "/Users/ewan/Documents/ISEN/PROJET/ProjetFISA/rapport/BARRE_LE-BAIL.tex" 1772195611.13857 22323 e8735c93f4bea9b07a05458c967e6297 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -175,10 +175,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1760536976 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1760536972 3345743 4af114970fc06cb4c82547d55e4371ca ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "BARRE_LE-BAIL.aux" 1772195096.38227 10293 b9a03606fb633ac856727da771fa7e63 "pdflatex"
-  "BARRE_LE-BAIL.out" 1772195096.38333 4588 186621e2554ae5685130387c693b2015 "pdflatex"
-  "BARRE_LE-BAIL.tex" 1772195094.87976 22318 d57e34a05baf89fc7dc9a45bd5272b27 ""
-  "BARRE_LE-BAIL.toc" 1772195096.3836 3330 102d8de15f981379b8d0d688f93f6bcb "pdflatex"
+  "BARRE_LE-BAIL.aux" 1772195614.10479 10293 b9a03606fb633ac856727da771fa7e63 "pdflatex"
+  "BARRE_LE-BAIL.out" 1772195614.10586 4588 186621e2554ae5685130387c693b2015 "pdflatex"
+  "BARRE_LE-BAIL.tex" 1772195611.13857 22323 e8735c93f4bea9b07a05458c967e6297 ""
+  "BARRE_LE-BAIL.toc" 1772195614.10612 3330 102d8de15f981379b8d0d688f93f6bcb "pdflatex"
   (generated)
   "BARRE_LE-BAIL.aux"
   "BARRE_LE-BAIL.log"
