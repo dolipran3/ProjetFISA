@@ -50,24 +50,26 @@
 \newlabel{fig:transformers}{{7}{9}{Comparaison des 4 architectures Transformer sur la semaine de test S39/2023}{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Analyse détaillée par modèle}{9}{subsection.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{RNN — 2\textsuperscript  {e} meilleur modèle (test MAE = 34.8, R² = 0.762).}{9}{section*.12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}{9}{section*.13}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}{9}{section*.14}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}{9}{section*.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{VanillaTransformer — Attention insuffisante (test MAE = 62.4, R² = 0.579).}{10}{section*.16}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{PatchTST — Bon compromis (test MAE = 44.0, R² = 0.755).}{10}{section*.17}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}{10}{section*.18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}{10}{section*.19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Comparaisons globales}{10}{subsection.4.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Barplots MAE, MAPE, RMSE, R² pour tous les modèles (barres opaques = val, transparentes = test).}}{10}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:metrics}{{8}{10}{Barplots MAE, MAPE, RMSE, R² pour tous les modèles (barres opaques = val, transparentes = test)}{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Prédictions sur la semaine de test S39/2023 (gauche) et heatmap des erreurs absolues par jour et par modèle (droite).}}{11}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:preds}{{9}{11}{Prédictions sur la semaine de test S39/2023 (gauche) et heatmap des erreurs absolues par jour et par modèle (droite)}{figure.caption.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Heatmap des métriques normalisées : vert = meilleur, rouge = moins bon.}}{11}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:heatmap_metrics}{{10}{11}{Heatmap des métriques normalisées : vert = meilleur, rouge = moins bon}{figure.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Radar chart des performances test normalisées. TimeXer domine sur les quatre axes simultanément.}}{11}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:radar}{{11}{11}{Radar chart des performances test normalisées. TimeXer domine sur les quatre axes simultanément}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Meilleure approche}{12}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limites}{12}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Perspectives}{12}{subsection.5.3}\protected@file@percent }
-\gdef \@abspage@last{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Illustration du vanishing gradient dans un RNN : le gradient de la loss se propage en arrière à travers le temps et s'atténue exponentiellement à chaque pas. Sur une fenêtre de 5 jours, cette atténuation reste négligeable.}}{10}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:rnn_vanishing_gradient}{{8}{10}{Illustration du vanishing gradient dans un RNN : le gradient de la loss se propage en arrière à travers le temps et s'atténue exponentiellement à chaque pas. Sur une fenêtre de 5 jours, cette atténuation reste négligeable}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}{10}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}{10}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}{10}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VanillaTransformer — Attention insuffisante sur séquences courtes (test MAE = 62.4, R² = 0.579).}{11}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{PatchTST — Bon compromis univarié (test MAE = 44.0, R² = 0.755).}{11}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}{11}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}{12}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Comparaisons globales}{13}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Barplots MAE, MAPE, RMSE, R² pour tous les modèles (barres opaques = val, transparentes = test).}}{13}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:metrics}{{9}{13}{Barplots MAE, MAPE, RMSE, R² pour tous les modèles (barres opaques = val, transparentes = test)}{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Prédictions sur la semaine de test S39/2023 (gauche) et heatmap des erreurs absolues par jour et par modèle (droite).}}{13}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:preds}{{10}{13}{Prédictions sur la semaine de test S39/2023 (gauche) et heatmap des erreurs absolues par jour et par modèle (droite)}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Heatmap des métriques normalisées : vert = meilleur, rouge = moins bon.}}{14}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:heatmap_metrics}{{11}{14}{Heatmap des métriques normalisées : vert = meilleur, rouge = moins bon}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Radar chart des performances test normalisées. TimeXer domine sur les quatre axes simultanément.}}{14}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:radar}{{12}{14}{Radar chart des performances test normalisées. TimeXer domine sur les quatre axes simultanément}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{15}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Meilleure approche}{15}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limites}{15}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Perspectives}{15}{subsection.5.3}\protected@file@percent }
+\gdef \@abspage@last{16}

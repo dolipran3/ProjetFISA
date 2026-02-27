@@ -22,15 +22,15 @@
 \contentsline {subsection}{\numberline {4.2}Résultats par modèle}{8}{subsection.4.2}%
 \contentsline {subsection}{\numberline {4.3}Analyse détaillée par modèle}{9}{subsection.4.3}%
 \contentsline {paragraph}{RNN — 2\textsuperscript {e} meilleur modèle (test MAE = 34.8, R² = 0.762).}{9}{section*.12}%
-\contentsline {paragraph}{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}{9}{section*.13}%
-\contentsline {paragraph}{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}{9}{section*.14}%
-\contentsline {paragraph}{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}{9}{section*.15}%
-\contentsline {paragraph}{VanillaTransformer — Attention insuffisante (test MAE = 62.4, R² = 0.579).}{10}{section*.16}%
-\contentsline {paragraph}{PatchTST — Bon compromis (test MAE = 44.0, R² = 0.755).}{10}{section*.17}%
-\contentsline {paragraph}{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}{10}{section*.18}%
-\contentsline {paragraph}{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}{10}{section*.19}%
-\contentsline {subsection}{\numberline {4.4}Comparaisons globales}{10}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Conclusion}{12}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Meilleure approche}{12}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Limites}{12}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Perspectives}{12}{subsection.5.3}%
+\contentsline {paragraph}{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}{10}{section*.14}%
+\contentsline {paragraph}{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}{10}{section*.15}%
+\contentsline {paragraph}{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}{10}{section*.16}%
+\contentsline {paragraph}{VanillaTransformer — Attention insuffisante sur séquences courtes (test MAE = 62.4, R² = 0.579).}{11}{section*.17}%
+\contentsline {paragraph}{PatchTST — Bon compromis univarié (test MAE = 44.0, R² = 0.755).}{11}{section*.18}%
+\contentsline {paragraph}{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}{11}{section*.19}%
+\contentsline {paragraph}{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}{12}{section*.20}%
+\contentsline {subsection}{\numberline {4.4}Comparaisons globales}{13}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Conclusion}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Meilleure approche}{15}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Limites}{15}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Perspectives}{15}{subsection.5.3}%

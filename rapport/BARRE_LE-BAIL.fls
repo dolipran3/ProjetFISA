@@ -330,6 +330,11 @@ INPUT ../img/transformers_results.png
 INPUT ../img/transformers_results.png
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmbx8.tfm
 INPUT /usr/local/texlive/2025/texmf-dist/fonts/tfm/public/lm/ts1-lmbx10.tfm
+INPUT ../img/rnn_vanishing_gradient.png
+INPUT ../img/rnn_vanishing_gradient.png
+INPUT ../img/rnn_vanishing_gradient.png
+INPUT ../img/rnn_vanishing_gradient.png
+INPUT ../img/rnn_vanishing_gradient.png
 INPUT ../img/compare_models_metrics.png
 INPUT ../img/compare_models_metrics.png
 INPUT ../img/compare_models_metrics.png

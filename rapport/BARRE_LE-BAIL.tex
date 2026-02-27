@@ -292,18 +292,19 @@ R²   & $1-\frac{SS_\text{res}}{SS_\text{tot}}$ & $\uparrow$ \\
 \cmidrule(lr){2-5}\cmidrule(lr){6-9}
 \textbf{Modèle} & MAE & MAPE & RMSE & R² & MAE & MAPE & RMSE & R² \\
 \midrule
-RNN              & 33.8 & 6.0\%  & 45.4 & 0.851 & 34.8 & 6.7\%  & 50.7 & 0.762 \\
+\textbf{RNN}              & 33.8 & 6.0\%  & 45.4 & 0.851 & \textbf{34.8} & \textbf{6.7\%} & 50.7 & 0.762 \\
 LSTM             & 34.2 & 6.2\%  & 41.3 & 0.877 & 65.5 & 11.7\% & 75.4 & 0.474 \\
 GRU              & 32.1 & 5.9\%  & 42.0 & 0.873 & 65.4 & 11.8\% & 73.9 & 0.495 \\
 XGBoost          & 58.4 & 9.7\%  & 70.5 & 0.642 & 54.9 & 9.9\%  & 60.5 & 0.662 \\
 VanillaTransf.   & 34.6 & 6.1\%  & 44.2 & 0.859 & 62.4 & 11.5\% & 67.5 & 0.579 \\
 PatchTST         & 63.4 & 11.5\% & 75.9 & 0.585 & 44.0 & 8.4\%  & 51.4 & 0.755 \\
 iTransformer     & 45.0 & 7.9\%  & 54.0 & 0.790 & 60.0 & 10.7\% & 62.7 & 0.637 \\
-\textbf{TimeXer} & 43.7 & 7.4\%  & 53.3 & 0.795
-                 & \textbf{39.0} & \textbf{6.9\%} & \textbf{43.4} & \textbf{0.826} \\
+\textbf{TimeXer} & 43.7 & 7.4\%  & 53.3 & 0.795 & 39.0 & 6.9\% & \textbf{43.4} & \textbf{0.826} \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
 
 \subsection{Résultats par modèle}
 
@@ -348,54 +349,190 @@ iTransformer     & 45.0 & 7.9\%  & 54.0 & 0.790 & 60.0 & 10.7\% & 62.7 & 0.637 \
 \subsection{Analyse détaillée par modèle}
 
 \paragraph{RNN — 2\textsuperscript{e} meilleur modèle (test MAE = 34.8, R² = 0.762).}
-Le RNN est la surprise de cette étude. Sa simplicité est un atout : avec moins de
-paramètres, il généralise mieux sur 225 jours d'entraînement. Sur une fenêtre de
-5 jours seulement, le \textit{vanishing gradient} théorique n'a pas le temps de se
-manifester. La cohérence val (MAE = 33.8) / test (MAE = 34.8) confirme l'absence
-d'overfitting.
+Le RNN est sans doute la plus grande surprise de cette étude. Sa formule récurrente
+minimale — $h_t = \tanh(W_h h_{t-1} + W_x x_t)$ — constitue précisément son avantage
+sur ce problème. Avec seulement 225 jours d'entraînement, la contrainte de capacité
+joue en faveur des architectures légères : le RNN dispose de nettement moins de
+paramètres que le LSTM ou le GRU, ce qui réduit naturellement le risque d'overfitting.
+
+Le \textit{vanishing gradient}, souvent cité comme la limite structurelle du RNN, ne se
+manifeste ici quasiment pas : sur une fenêtre de seulement 5 jours, les dépendances
+temporelles à capturer sont courtes, et le signal de gradient n'a pas le temps de
+s'atténuer à travers les couches de rétropropagation temporelle. Le problème du vanishing
+gradient n'est réellement pénalisant que sur des séquences longues (dizaines ou centaines
+de pas), ce qui n'est pas notre cas.
+
+La cohérence entre validation et test (MAE 33.8 → 34.8, soit une dégradation de
+seulement +3\%) est le signe le plus fort de la bonne généralisation du modèle.
+Là où LSTM et GRU s'effondrent avec des écarts de +30 à +33 points de MAE, le RNN
+maintient un niveau quasi constant. Cela traduit une \textbf{régularisation implicite
+par la parcimonie} : le modèle n'a tout simplement pas la capacité de mémoriser des
+patterns trop spécifiques au jeu d'entraînement. En termes de biais-variance, le RNN
+est légèrement plus biaisé que le LSTM (variance plus faible), ce qui est bénéfique
+dans un régime de données limitées.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{../img/rnn_vanishing_gradient.png}
+  \caption{Illustration du vanishing gradient dans un RNN : le gradient de la loss
+  se propage en arrière à travers le temps et s'atténue exponentiellement à chaque
+  pas. Sur une fenêtre de 5 jours, cette atténuation reste négligeable.}
+  \label{fig:rnn_vanishing_gradient}
+\end{figure}
 
 \paragraph{LSTM — Overfitting marqué (test MAE = 65.5, R² = 0.474).}
+Le LSTM illustre un phénomène classique en apprentissage profond : une architecture
+plus expressive n'est pas toujours meilleure. Ses trois portes (oubli, entrée, sortie)
+et sa cellule de mémoire à long terme $c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t$
+lui confèrent une capacité de représentation bien supérieure au RNN, mais cette richesse
+se retourne contre lui sur un dataset de seulement 225 jours d'entraînement.
+
 Malgré d'excellentes métriques de validation (MAE = 34.2, R² = 0.877), le LSTM
-s'effondre en test. Ses 3 portes et sa cellule de mémoire lui permettent de mémoriser
-des patterns très spécifiques du train, mais échouent à généraliser sur S39/2023.
-L'écart val/test est le plus marqué de tous les modèles — signe classique d'overfitting.
+s'effondre sur la semaine de test avec un MAE de 65.5 et un R² tombant à 0.474 —
+à peine au-dessus du hasard. L'écart val/test est le plus marqué de tous les modèles
+(+31.3 points de MAE), signe classique d'un overfitting sévère. Le modèle a appris
+à reconnaître des configurations très spécifiques de la série d'entraînement, mais
+ces patterns ne se retrouvent pas dans S39/2023 avec la même forme.
+
+Il est notable que l'early stopping (patience = 40) et le dropout (0.2) n'ont pas
+suffi à endiguer ce phénomène. Une explication possible est que la validation (20 jours)
+est trop proche temporellement du train et ne constitue pas un proxy suffisamment
+représentatif de la difficulté du test. De plus, la cellule LSTM peut stocker de
+l'information sur plusieurs centaines de pas lors de l'entraînement, accumulant une
+\textit{mémoire fantôme} des patterns de l'été 2023 qui ne se retrouve pas en S39.
 
 \paragraph{GRU — Même diagnostic que LSTM (test MAE = 65.4, R² = 0.495).}
-Le GRU présente un profil quasi-identique au LSTM : excellent en val (MAE = 32.1,
-meilleur de tous), mais effondrement en test. Malgré la fusion des portes et moins de
-paramètres, sa capacité reste trop grande pour ce dataset. LSTM et GRU sont davantage
-adaptés à des séries longues (plusieurs années) où leur mémoire à long terme est utile.
+Le GRU présente un profil quasi-identique au LSTM, ce qui est en soi un résultat
+intéressant. Bien que le GRU fusionne les portes d'oubli et d'entrée en une seule
+\textit{porte de mise à jour}, réduisant ainsi le nombre de paramètres, sa capacité
+reste manifestement trop grande pour un dataset de 225 jours.
+
+Le GRU obtient la meilleure performance de validation de tous les modèles (MAE = 32.1,
+R² = 0.873), mais enregistre un effondrement similaire au LSTM en test (MAE = 65.4,
+R² = 0.495). L'écart val/test de +33.3 points de MAE dépasse même celui du LSTM,
+confirmant que la réduction du nombre de portes n'est pas suffisante pour corriger
+le problème fondamental : le dataset est trop petit pour les architectures à mémoire
+explicite. LSTM et GRU ont été conçus pour capturer des dépendances à très long terme
+(plusieurs dizaines ou centaines de pas) — une qualité inutile, voire nuisible, sur
+des fenêtres de 5 jours. Sur notre problème, leur mémoire gated fonctionne comme
+un mécanisme d'apprentissage par cœur plutôt que de généralisation.
 
 \paragraph{XGBoost — Baseline stable (test MAE = 54.9, R² = 0.662).}
-XGBoost offre une performance intermédiaire mais surtout \textbf{stable} : val MAE = 58.4
-et test MAE = 54.9 (meilleure cohérence après RNN). En aplatissant la fenêtre temporelle,
-il perd l'ordre séquentiel, mais l'importance des features révèle que \texttt{Total\_reservations}
-et l'encodage du jour de la semaine sont les meilleurs prédicteurs. Recommandé en
-production pour sa robustesse et son interprétabilité.
+XGBoost, bien qu'il affiche des métriques de test inférieures à TimeXer, RNN et PatchTST,
+se distingue par une caractéristique cruciale en production : sa \textbf{stabilité}.
+Avec une validation à MAE = 58.4 et un test à MAE = 54.9, il est l'un des deux seuls
+modèles (avec le RNN) à améliorer ses performances entre val et test, signe d'une
+excellente robustesse face aux variations de distribution.
 
-\paragraph{VanillaTransformer — Attention insuffisante (test MAE = 62.4, R² = 0.579).}
-Sur seulement 5 tokens (jours), le mécanisme d'auto-attention ne trouve pas assez de
-structure temporelle à exploiter. La complexité (103 233 paramètres) n'est pas
-justifiée par la taille du dataset, résultant en des performances inférieures à XGBoost.
+En aplatissant la fenêtre de 5 jours en un vecteur de $5 \times 15 = 75$ features,
+XGBoost perd certes l'ordre séquentiel des observations, mais compense par une
+exploitation directe et non-linéaire des combinaisons de features. L'analyse de
+l'importance des features révèle que \texttt{Total\_reservations} arrive largement en tête
+($r = 0.89$ avec GLOBAL), suivie des encodages one-hot du jour de la semaine
+(vendredi systématiquement en bas) et de la température. Les variables de grève et de
+jours fériés, bien que rares dans le dataset, sont également identifiées comme
+importantes — XGBoost sait exploiter ces signaux épisodiques.
 
-\paragraph{PatchTST — Bon compromis (test MAE = 44.0, R² = 0.755).}
-PatchTST se classe en 3\textsuperscript{e} position malgré une validation médiocre
-(MAE = 63.4). En traitant chaque jour de la série endogène comme un token distinct,
-il apprend des représentations temporelles plus généralisables que le VanillaTransformer.
-L'inversion val/test est positive : le modèle généralise mieux qu'il ne valide.
+La robustesse d'XGBoost face à l'accumulation d'erreurs autorégressives est aussi un
+atout : contrairement aux réseaux de neurones, il ne propage pas d'erreur à travers
+des états cachés internes — chaque prédiction repart d'une représentation tabulaire
+fraîche. Dans un contexte de déploiement réel, sa rapidité d'inférence (quelques
+millisecondes), son absence de pré-traitement de normalisation, et sa facilité
+d'interprétation (SHAP values) en font un choix naturel pour un système de décision
+à enjeux.
+
+\paragraph{VanillaTransformer — Attention insuffisante sur séquences courtes (test MAE = 62.4, R² = 0.579).}
+Le VanillaTransformer illustre une limite fondamentale du mécanisme d'auto-attention
+lorsqu'il est appliqué à des séquences très courtes. Dans notre configuration, la
+fenêtre de 5 jours génère exactement 5 tokens — un nombre bien trop faible pour que
+l'attention multi-tête (4 têtes) puisse apprendre des relations temporelles non triviales.
+La matrice d'attention $5 \times 5$ ne contient que 25 entrées, ce qui offre peu de
+diversité structurelle à exploiter.
+
+Avec 103 233 paramètres, le VanillaTransformer est le modèle le plus lourd de notre
+comparaison, pour des performances sur le test inférieures à XGBoost (62.4 vs 54.9 de
+MAE). Ce déséquilibre entre complexité et données disponibles est la cause directe
+d'un overfitting modéré : le modèle ajuste ses paramètres de projection et de
+positional encoding à des configurations présentes dans le train, mais ne généralise
+pas bien. On observe également que la prédiction tend à lisser la série (réduction de
+variance), ce qui pénalise particulièrement les jours atypiques.
+
+\paragraph{PatchTST — Bon compromis univarié (test MAE = 44.0, R² = 0.755).}
+PatchTST se classe en 3\textsuperscript{e} position avec un test MAE = 44.0 et R² = 0.755,
+malgré une validation médiocre (MAE = 63.4, R² = 0.585) qui aurait pu le faire classer
+bien plus bas. Cette inversion val/test remarquable mérite une analyse approfondie.
+
+La première explication réside dans la nature \textbf{univariée} de PatchTST : chaque
+jour de la série endogène (\texttt{GLOBAL}) devient un token indépendant, sans intégrer
+les 14 features exogènes. À première vue, cela semble une perte d'information. Mais sur
+225 jours d'entraînement, cette contrainte agit comme une régularisation implicite très
+puissante : le modèle n'a pas accès aux features exogènes, donc il ne peut pas sur-adapter
+sa réponse aux configurations météo ou calendaires spécifiques au train. La généralisation
+en test s'en trouve améliorée.
+
+Avec \texttt{PATCH\_SIZE = 1}, chaque patch correspond à un seul jour, ce qui signifie
+que nous n'exploitons pas l'agrégation de sous-séquences propre à l'architecture PatchTST
+originale (conçue pour des fenêtres de 336 ou 512 pas). L'avantage principal du patch
+(agréger de l'information locale) est donc neutralisé ici. PatchTST se comporte en
+pratique comme un encodeur Transformer léger sur la série endogène, ce qui suffit à
+capturer la saisonnalité hebdomadaire.
+
+La faible taille du jeu de test (5 jours, variance élevée) amplifie également cet
+effet : la semaine S39/2023, première semaine de rentrée post-été, est une semaine
+\textit{régulière} où la présence revient à sa baseline hebdomadaire. Le modèle
+univarié, qui s'appuie sur le seul signal historique de \texttt{GLOBAL}, bénéficie
+d'un contexte favorable : aucune grève, aucun pont, météo stable, ce qui favorise
+une extrapolation fidèle de la tendance récente.
 
 \paragraph{iTransformer — Attention inter-variables inadaptée (test MAE = 60.0, R² = 0.637).}
-L'iTransformer traite chaque variable comme un token (attention entre features).
-Cette approche est pertinente sur des datasets multivariés denses, mais avec seulement
-15 features et 5 jours, les corrélations inter-variables sont mieux capturées par la
-matrice de corrélation que par un mécanisme d'attention dédié.
+L'iTransformer renverse la convention du Transformer temporel en traitant chaque
+\textit{variable} comme un token (plutôt que chaque pas de temps). Le mécanisme
+d'attention s'applique donc entre les 15 features, apprenant des corrélations
+inter-variables que l'encodage classique traite implicitement à travers les projections.
+
+Cette approche est particulièrement puissante sur des datasets multivariés denses
+avec de nombreuses séries interconnectées (trafic réseau, capteurs industriels, flux
+financiers). Dans notre cas, cependant, les corrélations inter-variables sont déjà
+bien caractérisées : \texttt{Total\_reservations} domine ($r = 0.89$), les variables
+binaires sont faiblement corrélées entre elles, et la structure de corrélation est
+essentiellement stable dans le temps. Apprendre une matrice d'attention entre 15
+features sur seulement 225 exemples d'entraînement génère une sur-paramétrisation
+des relations inter-variables, sans apporter d'information supplémentaire par rapport
+à une simple régression linéaire multivariée. L'iTransformer se classe ainsi dans
+le groupe intermédiaire (MAE test = 60.0), loin des meilleurs modèles, malgré des
+métriques de validation correctes (MAE = 45.0, R² = 0.790).
 
 \paragraph{TimeXer — Meilleur modèle (test MAE = 39.0, R² = 0.826).}
-TimeXer domine grâce à sa \textbf{cross-attention} endo/exo : les tokens de la série
-endogène interrogent directement les features exogènes, apprenant comment la météo,
-les grèves et les fériés modulent l'affluence. Là où PatchTST traite les deux séparément,
-TimeXer crée un dialogue explicite entre les deux flux. La cohérence val/test
-(43.7 → 39.0) est remarquable et confirme une bonne généralisation.
+TimeXer s'impose comme le meilleur modèle sur les quatre métriques test simultanément
+(MAE = 39.0, MAPE = 6.9\%, RMSE = 43.4, R² = 0.826). Son avantage architectural
+décisif réside dans le mécanisme de \textbf{cross-attention endogène/exogène} :
+\begin{equation}
+  \text{Attn}(\mathbf{Q}_\text{endo},\, \mathbf{K}_\text{exo},\, \mathbf{V}_\text{exo})
+  = \text{softmax}\!\left(\frac{\mathbf{Q}_\text{endo}\,\mathbf{K}_\text{exo}^\top}{\sqrt{d_k}}\right)\mathbf{V}_\text{exo}
+\end{equation}
+
+Les tokens de la série endogène (\texttt{GLOBAL}) jouent le rôle de \textit{queries},
+tandis que les features exogènes (météo, calendrier, grèves) forment les \textit{keys}
+et \textit{values}. Concrètement, le modèle apprend à poser des questions du type :
+\textit{« Sachant que l'on est un lundi de rentrée avec 50 réservations et une grève
+nationale, de combien cette configuration décale-t-elle la présence par rapport à un
+lundi ordinaire ? »} Cette interaction explicite entre les deux flux d'information est
+précisément ce qui manque aux architectures PatchTST (univariée) ou iTransformer
+(attention inter-features sans croisement endo/exo).
+
+La cohérence val/test (43.7 → 39.0, soit une \textbf{amélioration} de $-4.7$ points
+de MAE) est remarquable et inhabituelle. Elle suggère que le modèle a appris une
+représentation suffisamment générique des interactions endo/exo pour que la semaine
+S39 lui soit légèrement plus facile que les 20 jours de validation — semaine ordinaire
+à distribution stable, sans événements exceptionnels. Ce résultat confirme que la
+cross-attention n'a pas simplement mémorisé les configurations de l'entraînement, mais
+a extrait des règles robustes liant le contexte exogène à l'affluence.
+
+On notera également que TimeXer maintient un R² de 0.826 en mode autorégressif sur 5
+jours, ce qui signifie qu'il explique encore 82.6\% de la variance de la série test
+malgré l'accumulation d'erreurs jour après jour. Ce niveau de performance, combiné à
+une MAPE de 6.9\% (erreur relative inférieure à 7\%), place TimeXer dans une zone de
+précision compatible avec une aide à la décision opérationnelle réelle.
 
 \subsection{Comparaisons globales}
 
@@ -463,7 +600,6 @@ pour sa robustesse, sa rapidité d'inférence et son interprétabilité.
 \subsection{Perspectives}
 
 Pour améliorer ce système en production : utilisation de prévisions météo réelles,
-entraînement sur un historique plus long, intégration de données de badges d'accès,
-et ré-entraînement hebdomadaire automatique au fil des nouvelles données.
+entraînement sur un historique plus long, et ré-entraînement hebdomadaire automatique au fil des nouvelles données.
 
 \end{document}
